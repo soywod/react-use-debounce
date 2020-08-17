@@ -3,7 +3,7 @@
   "description": "⏳ React hook that safely add debounce to any kind of handler.",
   "author": "soywod <clement.douin@posteo.net>",
   "license": "MIT",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": false,
   "keywords": [
     "react",
@@ -26,11 +26,7 @@
   "main": "lib/index.umd.js",
   "module": "lib/index.esm.js",
   "files": [
-    "lib/index.d.ts",
-    "lib/index.esm.js",
-    "lib/index.esm.map.js",
-    "lib/index.umd.js",
-    "lib/index.umd.map.js"
+    "lib"
   ],
   "devDependencies": {
     "@babel/cli": "^7.8.4",
