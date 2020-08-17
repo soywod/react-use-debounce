@@ -1,0 +1,72 @@
+{
+  "name": "@soywod/react-use-debounce",
+  "description": "📚 Starter kit for publishing reliable React libraries.",
+  "author": "soywod <clement.douin@posteo.net>",
+  "license": "MIT",
+  "version": "0.0.1",
+  "private": false,
+  "keywords": [
+    "react",
+    "typescript",
+    "library",
+    "rollup"
+  ],
+  "homepage": "https://github.com/soywod/react-use-debounce",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soywod/react-use-debounce.git"
+  },
+  "bugs": {
+    "url": "https://github.com/soywod/react-use-debounce/issues"
+  },
+  "types": "lib/index.d.ts",
+  "main": "lib/index.umd.js",
+  "module": "lib/index.esm.js",
+  "files": [
+    "lib/index.d.ts",
+    "lib/index.esm.js",
+    "lib/index.esm.map.js",
+    "lib/index.umd.js",
+    "lib/index.umd.map.js"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.10.5",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-typescript": "^7.9.0",
+    "@rollup/plugin-babel": "^5.1.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
+    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/react": "^10.4.6",
+    "@types/jest": "^25.2.1",
+    "@types/react": "^16.9.43",
+    "@typescript-eslint/eslint-plugin": "^2.28.0",
+    "@typescript-eslint/parser": "^2.28.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "jest": "^25.4.0",
+    "prettier": "^2.0.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "rollup": "^2.7.2",
+    "rollup-plugin-terser": "^7.0.0",
+    "rxjs": "^6.6.0",
+    "ts-jest": "^25.4.0",
+    "typescript": "^3.8.3"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1"
+  },
+  "scripts": {
+    "prebuild": "rm -rf lib",
+    "build": "rollup -c .rolluprc.js",
+    "postbuild": "tsc --emitDeclarationOnly",
+    "test": "yarn jest -c .jestrc.js",
+    "prepublish": "yarn build"
+  }
+}
