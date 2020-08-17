@@ -1,15 +1,18 @@
 {
   "name": "@soywod/react-use-debounce",
-  "description": "📚 Starter kit for publishing reliable React libraries.",
+  "description": "⏳ React hook that safely add debounce to any kind of handler.",
   "author": "soywod <clement.douin@posteo.net>",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "private": false,
   "keywords": [
     "react",
     "typescript",
     "library",
-    "rollup"
+    "rollup",
+    "hook",
+    "debounce",
+    "use debounce"
   ],
   "homepage": "https://github.com/soywod/react-use-debounce",
   "repository": {
@@ -60,7 +63,8 @@
     "typescript": "^3.8.3"
   },
   "peerDependencies": {
-    "react": "^16.13.1"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "scripts": {
     "prebuild": "rm -rf lib",
