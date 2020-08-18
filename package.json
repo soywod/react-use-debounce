@@ -3,7 +3,7 @@
   "description": "⏳ React hook that safely add debounce to any kind of handler.",
   "author": "soywod <clement.douin@posteo.net>",
   "license": "MIT",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": false,
   "keywords": [
     "react",
@@ -54,7 +54,6 @@
     "react-dom": "^16.13.1",
     "rollup": "^2.7.2",
     "rollup-plugin-terser": "^7.0.0",
-    "rxjs": "^6.6.0",
     "ts-jest": "^25.4.0",
     "typescript": "^3.8.3"
   },

@@ -6,10 +6,11 @@ import {render} from "@testing-library/react";
 import useDebounce from "./debounce";
 
 it("should debounce", async () => {
+  const evt = {persist: jest.fn()};
   const handler = jest.fn();
   const TestComponent: FC = () => {
-    const handleClick = useDebounce(handler, {persist: true});
-    return <button data-testid="debounce" onClick={handleClick} />;
+    const handleClick = useDebounce(handler);
+    return <button data-testid="debounce" onClick={() => handleClick(evt)} />;
   };
 
   const {getByTestId} = render(<TestComponent />);
@@ -17,6 +18,25 @@ it("should debounce", async () => {
   expect(handler).not.toHaveBeenCalled();
   jest.runAllTimers();
   expect(handler).toHaveBeenCalledTimes(1);
+  expect(handler).toHaveBeenCalledWith(evt);
+  expect(evt.persist).not.toHaveBeenCalled();
+});
+
+it("should debounce and persist", async () => {
+  const evt = {persist: jest.fn()};
+  const handler = jest.fn();
+  const TestComponent: FC = () => {
+    const handleClick = useDebounce(handler, {persist: true});
+    return <button data-testid="debounce" onClick={() => handleClick(evt)} />;
+  };
+
+  const {getByTestId} = render(<TestComponent />);
+  getByTestId("debounce").click();
+  expect(handler).not.toHaveBeenCalled();
+  jest.runAllTimers();
+  expect(handler).toHaveBeenCalledTimes(1);
+  expect(handler).toHaveBeenCalledWith(evt);
+  expect(evt.persist).toHaveBeenCalledTimes(1);
 });
 
 it("should abort", async () => {

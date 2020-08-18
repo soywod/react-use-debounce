@@ -14,16 +14,22 @@ export const useDebounce: UseDebounce = <T extends Handler>(
     Number.isInteger(overrideOpts) ? {delay: overrideOpts} : overrideOpts,
   );
 
-  const [ready, setReady] = useState(false);
   const timeout = useRef(0);
   const wrapper = useRef<(...params: Parameters<T>) => void>(noop);
   const abort = useRef(noop);
   const terminate = useRef(noop);
+  const [isReady, setReady] = useState(false);
 
   useEffect(() => {
     wrapper.current = (...params: Parameters<T>) => {
-      if (opts.persist && isPersistable(params)) {
-        params.persist();
+      if (opts.persist) {
+        params.filter(isPersistable).forEach(param => param.persist());
+      }
+
+      function clearTimeout() {
+        window.clearTimeout(timeout.current);
+        abort.current = noop;
+        terminate.current = noop;
       }
 
       const wrapper = () => {
@@ -32,16 +38,14 @@ export const useDebounce: UseDebounce = <T extends Handler>(
       };
 
       abort.current = () => {
-        window.clearTimeout(timeout.current);
-        abort.current = noop;
-        terminate.current = noop;
+        if (timeout.current) {
+          clearTimeout();
+        }
       };
 
       terminate.current = () => {
         if (timeout.current) {
-          window.clearTimeout(timeout.current);
-          terminate.current = noop;
-          abort.current = noop;
+          clearTimeout();
           wrapper();
         }
       };
@@ -51,7 +55,7 @@ export const useDebounce: UseDebounce = <T extends Handler>(
     };
 
     setReady(true);
-  }, [ready, callback, opts.delay, opts.persist]);
+  }, [isReady, callback, opts.delay, opts.persist]);
 
   return Object.assign(wrapper.current, {
     abort: () => abort.current(),
